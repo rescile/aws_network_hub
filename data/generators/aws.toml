@@ -1,0 +1,12 @@
+[inputs."aws_ec2.json"]
+format = "object_of_objects"
+
+[generators.fetch-aws-inventory]
+description = "Fetches EC2 instances via AWS CLI"
+target_input = "aws_ec2.json"
+env = [
+  "AWS_REGION={{ params.region }}"
+]
+command = ["aws", "ec2", "describe-instances", "--region", "{{ params.region }}", "--output", "json"]
+from_stdout = true
+ttl = "1h"
