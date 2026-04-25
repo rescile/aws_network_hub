@@ -1,4 +1,4 @@
-# Defining the Network Transit Hub
+# AWS Network Transit Hub
 The *AWS Transit Hub* is a formalized, automated infrastructure subset designed to host specific cloud workloads under a governed security model. Unlike a standard VPC, which may lack inherent guardrails, a landing zone ensures that the network environment is pre-configured for compliance, centralized logging, and identity management before any external services are connected. This zone serves as the *administrative and technical boundary* where the cloud provider's network meets the Salesforce software-defined network.
 
 ## The Necessity of a Termination Point for Private IP
