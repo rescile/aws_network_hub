@@ -1,5 +1,5 @@
-# AWS Transit Network
-A Transit Network is a formalized, automated infrastructure subset designed to host specific cloud workloads under a governed security model. Unlike a standard VPC, which may lack inherent guardrails, a landing zone ensures that the network environment is pre-configured for compliance, centralized logging, and identity management before any external services are connected. This zone serves as the administrative and technical boundary where the AWS network meets the service provider endpoint.
+# AWS Network Hub
+A Network Hub is a formalized, automated infrastructure subset designed to host specific cloud workloads under a governed security model. Unlike a standard VPC, which may lack inherent guardrails, a landing zone ensures that the network environment is pre-configured for compliance, centralized logging, and identity management before any external services are connected. This zone serves as the administrative and technical boundary where the AWS network meets the service provider endpoint.
 
 ## Private Connectivty
 When utilizing private IP addressing for cloud service integration, traffic does not traverse the public internet via standard HTTPS/TLS over an Internet Gateway. Instead, it utilizes *unroutable private IP addresses*. This shift necessitates a dedicated termination point within a network hub for the following reasons:
