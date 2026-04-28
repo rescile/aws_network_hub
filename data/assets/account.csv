@@ -1,2 +1,2 @@
 name,function,id,key,description
-"aws","cloud","aws_id","aws_key","A cloud account is a secure digital identity that grants you authorized access to a provider's remote computing resources, such as storage, databases, and software. It serves as a centralized management hub where you can configure services, track usage, and control billing for your virtual environment."
+"aws","cloud","aws_id","aws_key","A cloud account is a secure digital identity that grants you authorized access to a provider's remote computing resources. It serves as a centralized management hub where you can configure services for your virtual environment."

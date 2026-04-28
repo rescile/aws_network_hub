@@ -1,6 +1,6 @@
 name,function,scope,description
 cloud,operation,technical,"The root administrator creates a supueruser for a cloud account with full access to all settings."
-account,management,commercial,"The account manager is a commercial contact at a cloud provider, responsible for billing and resource management."
+account,management,commercial,"The account manager is a commercial contact at a cloud provider and responsible for billing and resource management."
 platform,operation,technical,"The Kubernetes operator has the necessary permissions to manage the Kubernetes resources at a cloud provider."
 audit,report,security,"tbd"
 log,management,security,"tbd"
