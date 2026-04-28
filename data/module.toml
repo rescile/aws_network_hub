@@ -27,11 +27,19 @@ description = "The tenant name identifiers the organization that uses the servic
 required = true
 default = "YourName"
 
-[assets."user.csv"]
-resource_type = "user" # Optional: Explicitly map the file to a resource type
-description = "The main asset file defining the users."
-name_template = "{{- function | lower -}}_{{- name  | lower -}}"
-[assets."user.csv".columns]
+[assets."account.csv"]
+resource_type = "account"
+description = "The main asset file defining accounts."
+name_template = "{{- name | lower -}}_{{- function  | lower -}}_account"
+[assets."account.csv".columns]
+name = { type = "string", required = true }
+function = { type = "string", required = true }
+
+[assets."identity.csv"]
+resource_type = "identity"
+description = "The main asset file defining virtual identities."
+name_template = "{{- scope | lower -}}_{{- name  | lower -}}_{{- function | lower -}}"
+[assets."identity.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
 scope = { type = "string", required = false }
