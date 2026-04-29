@@ -56,9 +56,9 @@ method = "GET"
 url = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 abort_on_failure = true
 
-[generator.aws_zrh_pricing]
+[generator.aws_service_index]
 runner = "http"
-target_input = "aws_zrh_pricing.json"
+target_input = "aws_service_index.json"
 method = "GET"
 url = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json"
 abort_on_failure = false
