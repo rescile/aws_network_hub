@@ -27,6 +27,11 @@ description = "The tenant name identifiers the organization that uses the servic
 required = true
 default = "YourName"
 
+[params.location]
+description = "The regions to deploy the solution in."
+required = true
+default = "eu-central-2"
+
 [assets."account.csv"]
 resource_type = "account"
 description = "The main asset file defining accounts."
@@ -43,3 +48,10 @@ name_template = "{{- scope | lower -}}_{{- name  | lower -}}_{{- function | lowe
 name = { type = "string", required = true }
 function = { type = "string", required = true }
 scope = { type = "string", required = false }
+
+[generator.aws_ip_ranges]
+runner = "http"
+target_input = "aws_ip_ranges.json"
+method = "GET"
+url = "https://ip-ranges.amazonaws.com/ip-ranges.json"
+abort_on_failure = true
