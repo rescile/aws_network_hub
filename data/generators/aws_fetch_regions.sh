@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Configuration
 DATA_SOURCE="https://raw.githubusercontent.com/boto/botocore/develop/botocore/data/endpoints.json"
-OUTPUT_FILE=${OUTPUT_FILE:-"../input/aws_regional_service.json"}
+OUTPUT_FILE=${OUTPUT_FILE:-"input/aws_regional_service.json"}
 
 echo "Retrieving regional services for AWS from github..."
 
