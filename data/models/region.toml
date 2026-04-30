@@ -1,7 +1,7 @@
 # This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
 origin_resource = "provider"
 
-services = { "json!" = "aws_service_portfolio.json", jamespath = "prefixes[?region=='eu-central-2'].service " }
+services = { "json!" = "aws_service_portfolio.json", jp = "prefixes[?region=='eu-central-2'].service" }
 
 # Create the resource type
 [[create_resource]]
@@ -9,6 +9,6 @@ create_from = { property = "region" }
 relation_type = "MANAGED_BY"
 [create_resource.properties]
 function = "{{- origin_resource.display_name -}}"
-portfolio = "{{- services | json_encode -}}"
+portfolio = "{{- services | unique | json_encode -}}"
 description = "The region describes the physical, geographical place where infrastructure resides, where your data is stored, and where your applications run."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
