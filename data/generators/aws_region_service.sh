@@ -1,21 +1,58 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
 # Configuration
-DATA_SOURCE="https://raw.githubusercontent.com/boto/botocore/develop/botocore/data/endpoints.json"
-OUTPUT_FILE=${OUTPUT_FILE:-"input/aws_region_service.json"}
+SOURCE_NAME="Boto3/Botocore Endpoints"
+URL="https://raw.githubusercontent.com/boto/botocore/develop/botocore/data/endpoints.json"
+FILE="data/input/aws_endpoints_raw.json"
+ETAG_FILE="data/generators/aws_region_service.etag"
+MOD_DATE_FILE="data/generators/aws_region_service.last_mod"
+OUTPUT_FILE="data/input/aws_region_service.json"
 
-echo "Retrieving regional services for AWS from github..."
+# Ensure directories exist
+mkdir -p input generators
 
-RESPONSE=$(curl -s "$DATA_SOURCE")
+RESPONSE_HEADERS=$(curl -s -I \
+    --etag-compare "$ETAG_FILE" \
+    --etag-save "$ETAG_FILE" \
+    "$URL")
 
-echo "$RESPONSE" | jq -r '.partitions[0].services | to_entries |
-    map({service: .key, region: (.value.endpoints | keys[])}) |
-    reduce .[] as $item ({};
-        ($item.region | [match("[a-z]{2}-[a-z]+-[0-9]") | .string][0] // $item.region) as $clean_region |
-        .[$clean_region] += [$item.service]
-    ) |
-    map_values(unique | sort)
-' >> "$OUTPUT_FILE"
+STATUS=$(echo "$RESPONSE_HEADERS" | grep HTTP | tail -1 | awk '{print $2}')
 
-echo "Success! Data written to $OUTPUT_FILE"
+echo "------------------------------------------"
+echo "SOURCE: $SOURCE_NAME"
+
+if [ "$STATUS" -eq 200 ]; then
+    curl -s -o "$FILE" "$URL"
+    NEW_DATE=$(echo "$RESPONSE_HEADERS" | grep -i "last-modified:" | cut -d' ' -f2- | tr -d '\r')
+    echo "$NEW_DATE" > "$MOD_DATE_FILE"
+    echo "STATUS: New version downloaded!"
+elif [ "$STATUS" -eq 304 ]; then
+    SAVED_DATE=$(cat "$MOD_DATE_FILE" 2>/dev/null || echo "Unknown")
+    echo "STATUS: No update needed (Cached)"
+    echo "LAST UPDATED: $SAVED_DATE"
+else
+    echo "STATUS: Error (HTTP $STATUS)"
+    exit 1
+fi
+
+echo "Processing structured output..."
+
+# This JQ logic parses the Botocore endpoints file
+# It extracts the region names and the list of services for each
+jq '
+  .partitions[0] as $p |
+  [
+    $p.regions | to_entries[] | .key as $region_code | {
+      region: $region_code,
+      location: .value.description,
+      service: [
+        $p.services | to_entries[] |
+        # Check if endpoints exist AND if this region is in them
+        select(.value.endpoints? | has($region_code)) |
+        .key
+      ] | sort
+    }
+  ]
+' "$FILE" > "$OUTPUT_FILE"
+
+echo "------------------------------------------"

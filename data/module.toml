@@ -35,7 +35,7 @@ default = "eu-central-2"
 [assets."provider.csv"]
 resource_type = "provider"
 description = "The main asset file defining providers."
-name_template = "{{- name | lower -}}_{{- function  | lower -}}_account"
+name_template = "{{- name | lower -}}_{{- location | lower -}}"
 [assets."provider.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
@@ -56,11 +56,18 @@ method = "GET"
 url = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 abort_on_failure = true
 
-[generator.aws_index]
+[generator.aws_service_index]
 runner = "http"
-target_input = "aws_index.json"
+target_input = "aws_service_index.json"
 method = "GET"
 url = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json"
+abort_on_failure = false
+
+[generator.megaport_locations]
+runner = "http"
+target_input = "megaport_locations.json"
+method = "GET"
+url = "https://api.megaport.com/v2/locations"
 abort_on_failure = false
 
 [generator.aws_region_service]
@@ -68,13 +75,5 @@ description = "Fetch AWS regional endpoints from GitHub."
 runner = "exec"
 target_input = "aws_region_service.json"
 command = ["aws_region_service.sh"]
-from_stdout = false
-ttl = "24h"
-
-[generator.aws_region_data]
-description = "Fetch AWS regional data from GitHub."
-runner = "exec"
-target_input = "aws_region_data.json"
-command = ["aws_region_data.sh"]
 from_stdout = false
 ttl = "24h"
