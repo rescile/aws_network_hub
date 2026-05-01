@@ -2,21 +2,11 @@
 origin_resource = "provider"
 
 aws_region_services = { "json!" = "aws_region_service.json" }
-aws_services = { "function" = '''
-    {% set service_portfolio = [] %}
-    {% set loc = origin_resource.region_code %}
-    {% for s in aws_region_services %}
-        {% if s.region == loc %}
-            {% set_global service_portfolio = service_portfolio | concat(with=[s.service]) %}
-        {% endif %}
-    {% endfor %}
-    {{ service_portfolio | json_encode() }}
-''' }
-endpoints = { "json!" = "aws_region_endpoint.json" }
+aws_region_endpoint = { "json!" = "aws_region_endpoint.json" }
 aws_endpoints = { "function!" = '''
     {% set unique_services = [] %}
     {% set loc = origin_resource.region_code %}
-    {% for e in endpoints.prefixes %}
+    {% for e in aws_region_endpoint.prefixes %}
         {% if e.region == loc %}
             {# Check if the service is already in the list #}
             {% if e.service in unique_services %}
@@ -38,7 +28,7 @@ relation_type = "MANAGED_BY"
 [create_resource.properties]
 function = "{{- origin_resource.original_name | lower -}}"
 region_code = "{{- origin_resource.region_code -}}"
-service = "{% if origin_resource.original_name | lower == 'aws' %}{{ aws_services }}{% endif %}"
-endpoint = "{% if origin_resource.original_name | lower == 'aws' %}{{ aws_endpoint }}{% endif %}"
+service = "{% if origin_resource.original_name | lower == 'aws' %}{{ aws_region_services[origin_resource.region_code].service }}{% endif %}"
+endpoint = "{% if origin_resource.original_name | lower == 'aws' %}{{ aws_endpoints }}{% endif %}"
 description = "The region describes a {{ origin_resource.original_name }} managed, physical, geographical location of where infrastructure resides, data is stored, and applications run."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

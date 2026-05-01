@@ -1,6 +1,5 @@
-[
-  {
-    "region": "af-south-1",
+{
+  "af-south-1": {
     "location": "Africa (Cape Town)",
     "service": [
       "access-analyzer",
@@ -173,8 +172,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-east-1",
+  "ap-east-1": {
     "location": "Asia Pacific (Hong Kong)",
     "service": [
       "access-analyzer",
@@ -341,8 +339,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-east-2",
+  "ap-east-2": {
     "location": "Asia Pacific (Taipei)",
     "service": [
       "access-analyzer",
@@ -453,8 +450,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-northeast-1",
+  "ap-northeast-1": {
     "location": "Asia Pacific (Tokyo)",
     "service": [
       "access-analyzer",
@@ -712,8 +708,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-northeast-2",
+  "ap-northeast-2": {
     "location": "Asia Pacific (Seoul)",
     "service": [
       "access-analyzer",
@@ -951,8 +946,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-northeast-3",
+  "ap-northeast-3": {
     "location": "Asia Pacific (Osaka)",
     "service": [
       "access-analyzer",
@@ -1113,8 +1107,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-south-1",
+  "ap-south-1": {
     "location": "Asia Pacific (Mumbai)",
     "service": [
       "access-analyzer",
@@ -1341,8 +1334,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-south-2",
+  "ap-south-2": {
     "location": "Asia Pacific (Hyderabad)",
     "service": [
       "access-analyzer",
@@ -1482,8 +1474,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-1",
+  "ap-southeast-1": {
     "location": "Asia Pacific (Singapore)",
     "service": [
       "access-analyzer",
@@ -1729,8 +1720,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-2",
+  "ap-southeast-2": {
     "location": "Asia Pacific (Sydney)",
     "service": [
       "access-analyzer",
@@ -1991,8 +1981,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-3",
+  "ap-southeast-3": {
     "location": "Asia Pacific (Jakarta)",
     "service": [
       "access-analyzer",
@@ -2137,8 +2126,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-4",
+  "ap-southeast-4": {
     "location": "Asia Pacific (Melbourne)",
     "service": [
       "access-analyzer",
@@ -2275,8 +2263,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-5",
+  "ap-southeast-5": {
     "location": "Asia Pacific (Malaysia)",
     "service": [
       "access-analyzer",
@@ -2415,8 +2402,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-6",
+  "ap-southeast-6": {
     "location": "Asia Pacific (New Zealand)",
     "service": [
       "access-analyzer",
@@ -2526,8 +2512,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ap-southeast-7",
+  "ap-southeast-7": {
     "location": "Asia Pacific (Thailand)",
     "service": [
       "access-analyzer",
@@ -2646,8 +2631,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ca-central-1",
+  "ca-central-1": {
     "location": "Canada (Central)",
     "service": [
       "access-analyzer",
@@ -2876,8 +2860,7 @@
       "xray"
     ]
   },
-  {
-    "region": "ca-west-1",
+  "ca-west-1": {
     "location": "Canada West (Calgary)",
     "service": [
       "access-analyzer",
@@ -3001,8 +2984,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-central-1",
+  "eu-central-1": {
     "location": "Europe (Frankfurt)",
     "service": [
       "access-analyzer",
@@ -3262,8 +3244,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-central-2",
+  "eu-central-2": {
     "location": "Europe (Zurich)",
     "service": [
       "access-analyzer",
@@ -3404,8 +3385,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-north-1",
+  "eu-north-1": {
     "location": "Europe (Stockholm)",
     "service": [
       "access-analyzer",
@@ -3605,8 +3585,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-south-1",
+  "eu-south-1": {
     "location": "Europe (Milan)",
     "service": [
       "access-analyzer",
@@ -3770,8 +3749,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-south-2",
+  "eu-south-2": {
     "location": "Europe (Spain)",
     "service": [
       "access-analyzer",
@@ -3925,8 +3903,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-west-1",
+  "eu-west-1": {
     "location": "Europe (Ireland)",
     "service": [
       "access-analyzer",
@@ -4188,8 +4165,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-west-2",
+  "eu-west-2": {
     "location": "Europe (London)",
     "service": [
       "access-analyzer",
@@ -4434,8 +4410,7 @@
       "xray"
     ]
   },
-  {
-    "region": "eu-west-3",
+  "eu-west-3": {
     "location": "Europe (Paris)",
     "service": [
       "access-analyzer",
@@ -4632,8 +4607,7 @@
       "xray"
     ]
   },
-  {
-    "region": "il-central-1",
+  "il-central-1": {
     "location": "Israel (Tel Aviv)",
     "service": [
       "access-analyzer",
@@ -4783,8 +4757,7 @@
       "xray"
     ]
   },
-  {
-    "region": "me-central-1",
+  "me-central-1": {
     "location": "Middle East (UAE)",
     "service": [
       "access-analyzer",
@@ -4935,8 +4908,7 @@
       "xray"
     ]
   },
-  {
-    "region": "me-south-1",
+  "me-south-1": {
     "location": "Middle East (Bahrain)",
     "service": [
       "access-analyzer",
@@ -5102,8 +5074,7 @@
       "xray"
     ]
   },
-  {
-    "region": "mx-central-1",
+  "mx-central-1": {
     "location": "Mexico (Central)",
     "service": [
       "access-analyzer",
@@ -5216,12 +5187,12 @@
       "transcribestreaming",
       "transfer",
       "verifiedpermissions",
+      "vpc-lattice",
       "wafv2",
       "xray"
     ]
   },
-  {
-    "region": "sa-east-1",
+  "sa-east-1": {
     "location": "South America (Sao Paulo)",
     "service": [
       "access-analyzer",
@@ -5420,8 +5391,7 @@
       "xray"
     ]
   },
-  {
-    "region": "us-east-1",
+  "us-east-1": {
     "location": "US East (N. Virginia)",
     "service": [
       "access-analyzer",
@@ -5714,8 +5684,7 @@
       "xray"
     ]
   },
-  {
-    "region": "us-east-2",
+  "us-east-2": {
     "location": "US East (Ohio)",
     "service": [
       "access-analyzer",
@@ -5947,8 +5916,7 @@
       "xray"
     ]
   },
-  {
-    "region": "us-west-1",
+  "us-west-1": {
     "location": "US West (N. California)",
     "service": [
       "access-analyzer",
@@ -6142,8 +6110,7 @@
       "xray"
     ]
   },
-  {
-    "region": "us-west-2",
+  "us-west-2": {
     "location": "US West (Oregon)",
     "service": [
       "access-analyzer",
@@ -6418,4 +6385,4 @@
       "xray"
     ]
   }
-]
+}

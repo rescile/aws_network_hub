@@ -69,6 +69,7 @@ target_input = "megaport_locations.json"
 method = "GET"
 url = "https://api.megaport.com/v2/locations"
 abort_on_failure = false
+ttl = "24h"
 
 [generator.aws_region_service]
 description = "Fetch AWS regional endpoints from GitHub."
@@ -76,4 +77,3 @@ runner = "exec"
 target_input = "aws_region_service.json"
 command = ["aws_region_service.sh"]
 from_stdout = false
-ttl = "24h"
