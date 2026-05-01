@@ -32,11 +32,11 @@ description = "The regions to deploy the solution in."
 required = true
 default = "eu-central-2"
 
-[assets."account.csv"]
-resource_type = "account"
-description = "The main asset file defining accounts."
+[assets."provider.csv"]
+resource_type = "provider"
+description = "The main asset file defining providers."
 name_template = "{{- name | lower -}}_{{- function  | lower -}}_account"
-[assets."account.csv".columns]
+[assets."provider.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
 

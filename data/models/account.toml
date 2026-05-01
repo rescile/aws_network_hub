@@ -1,0 +1,13 @@
+# A cloud provider owns and operates data centers to "rent out" computing power, storage, and/or software.
+origin_resource = "provider"
+
+[[create_resource]]
+resource_type = "account"
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.original_name -}}_account"
+[create_resource.properties]
+function = "authentication"
+id = "{{- origin_resource.original_name -}}_id"
+key = "{{- origin_resource.original_name -}}_key"
+description = "A cloud account is a secure digital identity that grants you authorized access to a provider's remote computing resources. It serves as a centralized management hub where you can configure services for your virtual environment."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

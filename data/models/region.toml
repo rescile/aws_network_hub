@@ -1,24 +1,35 @@
 # This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
 origin_resource = "provider"
 
-endpoints = { "json!" = "aws_region_endpoint.json" }
 services = { "json!" = "aws_region_service.json"}
-service_endpoint = '''[
-  {% for p in endpoints.prefixes %}
-    {% if p.region == 'eu-central-2' %}
-      {{ p.service }}
-    {% endif %}
-    {% if not loop.last %}, {% endif %}
-  {% endfor %}
-]'''
+endpoints = { "json!" = "aws_region_endpoint.json" }
+service_endpoint = { "function!" = '''
+    {% set unique_services = [] %}
+    {% set location = property.value %}
+
+    {% for e in endpoints.prefixes %}
+        {% if e.region == location %}
+            {# Check if the service is already in our list #}
+            {% if e.service in unique_services %}
+                {# Do nothing #}
+            {% else %}
+                {# Wrap e.service in [] to make it a list for concat #}
+                {% set_global unique_services = unique_services | concat(with=[e.service]) %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {{ unique_services | json_encode() }}
+''' }
 
 # Create the resource type
 [[create_resource]]
+match_on = { property = "original_name", value = "aws" }
 create_from = { property = "region" }
 relation_type = "MANAGED_BY"
 [create_resource.properties]
-function = "{{- origin_resource.display_name -}}"
+function = "{{- origin_resource.original_name -}}"
 service = "{{ services[property.value] }}"
-endpoint = "{{ service_endpoint | unique }}"
+endpoint = "{{ service_endpoint }}"
 description = "The region describes the physical, geographical place where infrastructure resides, where your data is stored, and where your applications run."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
