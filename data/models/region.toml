@@ -1,11 +1,11 @@
 # This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
-origin_resource = "provider"
+origin_resource = "platform"
 
 aws_region_services = { "json!" = "aws_region_service.json" }
 aws_region_endpoint = { "json!" = "aws_region_endpoint.json" }
 aws_endpoints = { "function!" = '''
     {% set unique_services = [] %}
-    {% set loc = origin_resource.region_code %}
+    {% set loc = origin_resource.region %}
     {% for e in aws_region_endpoint.prefixes %}
         {% if e.region == loc %}
             {# Check if the service is already in the list #}
@@ -22,13 +22,12 @@ aws_endpoints = { "function!" = '''
 
 # Create the resource type
 [[create_resource]]
-create_from = { property = "location", as = "region" }
-name = "{{- origin_resource.original_name | lower -}}_{{- property.value | lower -}}_region"
+create_from = { property = "region" }
+name = "{{- origin_resource.name | lower -}}_{{- origin_resource.location | lower -}}_region"
 relation_type = "MANAGED_BY"
 [create_resource.properties]
-function = "{{- origin_resource.original_name | lower -}}"
-region_code = "{{- origin_resource.region_code -}}"
-service = "{% if origin_resource.original_name | lower == 'aws' %}{{ aws_region_services[origin_resource.region_code].service }}{% endif %}"
-endpoint = "{% if origin_resource.original_name | lower == 'aws' %}{{ aws_endpoints }}{% endif %}"
-description = "The region describes a {{ origin_resource.original_name }} managed, physical, geographical location of where infrastructure resides, data is stored, and applications run."
+function = "{{- origin_resource.location | lower -}}"
+service = "{{ aws_region_services[origin_resource.region].service }}"
+endpoint = "{{ aws_endpoints }}"
+description = "The region describes a {{ origin_resource.name }} managed, physical, geographical location of where infrastructure resides, data is stored, and applications run."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

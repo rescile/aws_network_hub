@@ -1,3 +1,0 @@
-name,function,domain,location,region_code,description
-"AWS","cloud","platform","Zurich","eu-central-2","Amazon Web Services (AWS) is a cloud provider that specializes in providing an ecosystem of scalable and integrated services. AWS distinguishes itself from competitors primarily through the breadth and maturity of its portfolio—ranging from serverless architectures to hardware accelerators."
-"Megaport","network","connectivity","Zurich","zrh-eq4","Megaport is a Software Defined Network (SDN) platform that provides on-demand, private connectivity between data centers, offices, and cloud providers like AWS. It allows you to bypass the public internet by using a web portal to instantly provision virtual cross-connects (VXCs) with flexible, pay-as-you-go bandwidth."

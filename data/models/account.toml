@@ -1,13 +1,13 @@
-# A cloud provider owns and operates data centers to "rent out" computing power, storage, and/or software.
-origin_resource = "provider"
+# A account represents a secure digital identity.
+origin_resource = "platform"
 
 [[create_resource]]
 resource_type = "account"
 relation_type = "DEFINED_BY"
-name = "{{- origin_resource.original_name | lower -}}_{{- origin_resource.function | lower -}}_account"
+name = "{{- provider | lower -}}_{{- origin_resource.function | lower -}}_account"
 [create_resource.properties]
-function = "{{- origin_resource.domain | lower -}}"
-uid = "{{- origin_resource.original_name | lower -}}_id"
-key = "{{- origin_resource.original_name | lower -}}_key"
-description = "The {{ origin_resource.function }} account represents a secure digital identity that grants authorized access to {{ origin_resource.original_name }}'s {{ origin_resource.domain }} resources. It enables a centralized management hub to automate {{ origin_resource.function }} service deployments and configurations."
+function = "{{- origin_resource.function | lower -}}"
+uid = "{{- provider | lower -}}_id"
+key = "{{- provider | lower -}}_key"
+description = "The {{ origin_resource.function }} account represents a secure digital identity that grants authorized access to {{ provider }}'s cloud resources. It enables a centralized management hub to automate {{ origin_resource.function }} service deployments and configurations."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

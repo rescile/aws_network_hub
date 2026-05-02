@@ -1,17 +1,16 @@
 # This model represents a third tier model of a cloud domain and defines routers where provider resources become accessible.
-# Template function
+# Specify the resource dependency for a router
+origin_resource = "platform"
+
 resource_function = { "template!" = '''
 {%- set purpose = origin_resource.function -%}
-{%- if purpose in ["access", "edge"] -%}
+{%- if purpose in ["cloud", "perimeter"] -%}
     {%- set purpose = "gateway" -%}
 {%- else -%}
     {%- set purpose = "cpe" -%}
 {%- endif -%}
 {{- purpose | default(value="none") | lower -}}
 ''' }
-
-# Specify the resource dependency for a router
-origin_resource = "provider"
 
 # Create the resource type
 [[create_resource]]
@@ -21,8 +20,8 @@ name = "{{- origin_resource.name -}}_router"
 relation_type = "PROVIDED_BY"
 [create_resource.properties]
 function = "{{- resource_function -}}"
-domain = "{{- origin_resource.domain -}}"
-provider = "{{- origin_resource.name -}}"
+domain = "{{- origin_resource.function -}}"
+operator = "{{- origin_resource.name -}}"
 cidr = "{{- origin_resource.cidr | default(value='192.168.0.0/16') -}}"
 description = "A {{- origin_resource.function -}} router is a {{- resource_function -}} appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
