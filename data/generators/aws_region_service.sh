@@ -57,10 +57,10 @@ jq '
   $p.regions | to_entries | map(
     .key as $region_code |
     {
-      key: $region_code,
+      key: .value.description,
       value: {
-        location: .value.description,
-        service: [
+        region_code: $region_code,
+        services: [
           $p.services | to_entries[] |
           select(.value.endpoints? | has($region_code)) |
           .key
